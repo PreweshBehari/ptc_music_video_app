@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Music Video App</title>
+    </head>
+
+    <body>
+        <div>
+            <ul>
+                {% for item in items %}
+                    <li>
+                        Name: {{ item.name }}<br>
+                        Score: {{ item.score }}<br>
+
+                        <br>
+                        <a href="{{ item.video_url }}" target="_blank">
+                            <img src="{{ item.image_url }}"><br>
+                            View video
+                        </a>
+                    </li>
+                    <br>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
