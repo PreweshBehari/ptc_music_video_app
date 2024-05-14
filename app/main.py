@@ -1,5 +1,5 @@
 # Import packages
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # Import custom packages
 from my_api.music_video import get_api_data
@@ -12,6 +12,12 @@ my_app = Flask(__name__)
 def index():
     # Get data from api
     data = get_api_data()
+
+    # Filter data on given search query
+    search_query = request.args.get("q", None)
+
+    if search_query:
+        data = filter(lambda d: search_query.lower() in d["name"].lower(), data)
 
     # Sort data by "score" column in descending order
     data = sorted(data,
